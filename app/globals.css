@@ -1,26 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-base: #0d000f;
+  --bg-surface: #160020;
+  --bg-card: #120018;
+  --gold: #d4af37;
+  --purple: #7c3aed;
+  --purple-muted: #4c1d95;
+  --green: #1a3a1a;
+  --text: #f0eaf8;
+  --text-muted: #9b8fb0;
+  --border: rgba(124, 58, 237, 0.18);
+  --border-gold: rgba(212, 175, 55, 0.15);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-base);
+  --color-foreground: var(--text);
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-space);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg-base);
+  color: var(--text);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-base);
+  color: var(--text);
+  font-family: var(--font-space), system-ui, sans-serif;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(76, 29, 149, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(45, 15, 80, 0.3) 0%, transparent 60%);
+}
+
+.font-serif { font-family: var(--font-cormorant), Georgia, serif; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Smoke gradient overlay utility */
+.smoke-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(76, 29, 149, 0.15) 0%,
+    rgba(13, 0, 15, 0.8) 50%,
+    rgba(26, 10, 40, 0.6) 100%
+  );
 }

@@ -7,12 +7,10 @@ export default function AgeGate() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const verified = document.cookie.includes("md_age=1");
-    if (!verified) setShow(true);
+    setShow(true);
   }, []);
 
   const accept = () => {
-    document.cookie = "md_age=1; max-age=86400; path=/";
     setShow(false);
   };
 

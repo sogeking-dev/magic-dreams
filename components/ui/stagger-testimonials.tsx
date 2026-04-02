@@ -80,12 +80,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ position, testimonial
         "absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out",
         isCenter
           ? "z-10 border-[#d4af37]"
-          : "z-0 border-[rgba(124,58,237,0.3)] hover:border-[rgba(212,175,55,0.5)]"
+          : "z-0 border-[rgba(45,80,22,0.3)] hover:border-[rgba(212,175,55,0.5)]"
       )}
       style={{
         width: cardSize,
         height: cardSize,
-        backgroundColor: isCenter ? '#1a0028' : '#120018',
+        backgroundColor: isCenter ? '#0e1508' : '#0c1207',
         clipPath: `polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)`,
         transform: `
           translate(-50%, -50%)
@@ -98,23 +98,23 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ position, testimonial
     >
       <span
         className="absolute block origin-top-right rotate-45"
-        style={{ right: -2, top: 48, width: SQRT_5000, height: 2, backgroundColor: isCenter ? '#d4af37' : 'rgba(124,58,237,0.3)' }}
+        style={{ right: -2, top: 48, width: SQRT_5000, height: 2, backgroundColor: isCenter ? '#d4af37' : 'rgba(45,80,22,0.3)' }}
       />
       <img
         src={testimonial.imgSrc}
         alt={testimonial.by.split(',')[0]}
-        className="mb-4 h-14 w-12 object-cover object-top bg-[#0d000f]"
-        style={{ boxShadow: "3px 3px 0px #0d000f" }}
+        className="mb-4 h-14 w-12 object-cover object-top bg-[#080c05]"
+        style={{ boxShadow: "3px 3px 0px #080c05" }}
       />
       <h3 className={cn(
         "text-base sm:text-xl font-medium font-[family-name:var(--font-cormorant)] italic",
-        isCenter ? "text-[#f0eaf8]" : "text-[#9b8fb0]"
+        isCenter ? "text-[#f4efe6]" : "text-[#a09a8e]"
       )}>
         &ldquo;{testimonial.testimonial}&rdquo;
       </h3>
       <p className={cn(
         "absolute bottom-8 left-8 right-8 mt-2 text-xs font-[family-name:var(--font-space)] tracking-wider",
-        isCenter ? "text-[#d4af37]" : "text-[#9b8fb0]"
+        isCenter ? "text-[#d4af37]" : "text-[#a09a8e]"
       )}>
         — {testimonial.by}
       </p>
@@ -173,14 +173,14 @@ export const StaggerTestimonials: React.FC = () => {
       <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
         <button
           onClick={() => handleMove(-1)}
-          className="flex h-14 w-14 items-center justify-center border-2 border-[rgba(124,58,237,0.3)] bg-[#0d000f] text-[#9b8fb0] hover:bg-[#d4af37] hover:text-[#0d000f] hover:border-[#d4af37] transition-colors"
+          className="flex h-14 w-14 items-center justify-center border-2 border-[rgba(45,80,22,0.3)] bg-[#080c05] text-[#a09a8e] hover:bg-[#d4af37] hover:text-[#080c05] hover:border-[#d4af37] transition-colors"
           aria-label="Previous"
         >
           <ChevronLeft />
         </button>
         <button
           onClick={() => handleMove(1)}
-          className="flex h-14 w-14 items-center justify-center border-2 border-[rgba(124,58,237,0.3)] bg-[#0d000f] text-[#9b8fb0] hover:bg-[#d4af37] hover:text-[#0d000f] hover:border-[#d4af37] transition-colors"
+          className="flex h-14 w-14 items-center justify-center border-2 border-[rgba(45,80,22,0.3)] bg-[#080c05] text-[#a09a8e] hover:bg-[#d4af37] hover:text-[#080c05] hover:border-[#d4af37] transition-colors"
           aria-label="Next"
         >
           <ChevronRight />

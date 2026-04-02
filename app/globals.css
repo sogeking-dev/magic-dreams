@@ -1,16 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --bg-base: #0d000f;
-  --bg-surface: #160020;
-  --bg-card: #120018;
+  --bg-base: #080c05;
+  --bg-surface: #0e1508;
+  --bg-card: #0c1207;
   --gold: #d4af37;
-  --purple: #7c3aed;
-  --purple-muted: #4c1d95;
-  --green: #1a3a1a;
-  --text: #f0eaf8;
-  --text-muted: #9b8fb0;
-  --border: rgba(124, 58, 237, 0.18);
+  --sage: #2d5016;
+  --sage-light: #4a7a28;
+  --burgundy: #722f37;
+  --teal: #2c5f5d;
+  --cream: #f4efe6;
+  --text: #f4efe6;
+  --text-muted: #a09a8e;
+  --border: rgba(45, 80, 22, 0.2);
   --border-gold: rgba(212, 175, 55, 0.15);
 }
 
@@ -34,8 +36,8 @@ body {
   font-family: var(--font-space), system-ui, sans-serif;
   overflow-x: hidden;
   background-image:
-    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(76, 29, 149, 0.25) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(45, 15, 80, 0.3) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 50% at 20% 10%, rgba(26, 51, 18, 0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(45, 80, 22, 0.2) 0%, transparent 60%);
 }
 
 .font-serif { font-family: var(--font-cormorant), Georgia, serif; }
@@ -46,8 +48,8 @@ body {
 .smoke-gradient {
   background: linear-gradient(
     135deg,
-    rgba(76, 29, 149, 0.15) 0%,
-    rgba(13, 0, 15, 0.8) 50%,
-    rgba(26, 10, 40, 0.6) 100%
+    rgba(26, 51, 18, 0.2) 0%,
+    rgba(8, 12, 5, 0.8) 50%,
+    rgba(14, 21, 8, 0.6) 100%
   );
 }

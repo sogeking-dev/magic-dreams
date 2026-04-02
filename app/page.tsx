@@ -181,7 +181,7 @@ export default function Home() {
             <p className="font-[family-name:var(--font-space)] text-[10px] tracking-[0.4em] uppercase text-[#d4af37] mb-10">
               02 — Categorieën
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-px bg-[rgba(124,58,237,0.1)]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[rgba(124,58,237,0.1)]">
               {categories.map((cat, i) => (
                 <motion.div
                   key={cat.id}

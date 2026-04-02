@@ -17,22 +17,43 @@ const GOOGLE_REVIEW_URL =
 
 const reviews = [
   {
-    name: "Thomas van der Berg",
+    name: "Jaycee",
+    badge: "Local Guide",
     rating: 5,
-    text: "Geweldige winkel met heel veel kennis. Ze helpen je echt goed en de producten zijn van hoge kwaliteit. Zeker een aanrader!",
-    date: "1 week geleden",
+    text: "Nice guy. Been going there for years, nothing wrong with the products or customer service. 5 stars +",
+    date: "8 jaar geleden",
   },
   {
-    name: "Layla H.",
+    name: "Jean Émarre",
+    badge: "Local Guide",
     rating: 5,
-    text: "Al jaren klant hier. Altijd vriendelijk personeel, goede producten en eerlijk advies. Magic Dreams is gewoon de beste smartshop van Tilburg.",
-    date: "2 weken geleden",
+    text: "Vriendelijke man achter de toonbank, top product, overall top smartshop.",
+    date: "1 jaar geleden",
   },
   {
-    name: "Daan K.",
+    name: "Bas Van der Ploeg",
     rating: 5,
-    text: "Top service! Ze nemen echt de tijd voor je. Ik kom hier al jaren en word elke keer weer goed geholpen. Aanrader voor iedereen.",
-    date: "1 maand geleden",
+    text: "De eigenaar was erg behulpzaam, hielp ons bij de keuze en legde alles heel goed (in het Engels) uit!",
+    date: "4 jaar geleden",
+  },
+  {
+    name: "Cankut Canturk",
+    rating: 5,
+    text: "Is the best shop in the Tilburg area.",
+    date: "11 maanden geleden",
+  },
+  {
+    name: "Ireneusz Wierzbicki",
+    badge: "Local Guide",
+    rating: 5,
+    text: "Super service! Een bezoek is zeker de moeite waard.",
+    date: "5 jaar geleden",
+  },
+  {
+    name: "Ozgur Sener",
+    rating: 5,
+    text: "A great guy, very helpful.",
+    date: "1 jaar geleden",
   },
 ];
 
@@ -274,24 +295,27 @@ export default function Home() {
               {reviews.map((r) => (
                 <div
                   key={r.name}
-                  className="bg-[#120018] border border-[rgba(124,58,237,0.15)] p-6"
+                  className="bg-[#120018] border border-[rgba(124,58,237,0.15)] p-6 flex flex-col"
                 >
                   <div className="flex gap-0.5 mb-3">
                     {Array.from({ length: r.rating }).map((_, i) => (
-                      <Star
-                        key={i}
-                        size={12}
-                        className="fill-[#d4af37] text-[#d4af37]"
-                      />
+                      <Star key={i} size={12} className="fill-[#d4af37] text-[#d4af37]" />
                     ))}
                   </div>
-                  <p className="font-[family-name:var(--font-space)] text-xs text-[#9b8fb0] leading-relaxed mb-4">
+                  <p className="font-[family-name:var(--font-space)] text-xs text-[#9b8fb0] leading-relaxed mb-4 flex-1">
                     &ldquo;{r.text}&rdquo;
                   </p>
-                  <div className="flex justify-between items-center">
-                    <span className="font-[family-name:var(--font-space)] text-[10px] text-[#f0eaf8]">
-                      {r.name}
-                    </span>
+                  <div className="flex justify-between items-end mt-auto pt-3 border-t border-[rgba(124,58,237,0.1)]">
+                    <div>
+                      <span className="font-[family-name:var(--font-space)] text-[10px] text-[#f0eaf8] block">
+                        {r.name}
+                      </span>
+                      {"badge" in r && (
+                        <span className="font-[family-name:var(--font-space)] text-[9px] text-[#7c3aed]">
+                          {r.badge}
+                        </span>
+                      )}
+                    </div>
                     <span className="font-[family-name:var(--font-space)] text-[9px] text-[#9b8fb0]">
                       {r.date}
                     </span>

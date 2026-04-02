@@ -4,7 +4,8 @@ import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 import { categories } from "@/lib/products";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Star, ExternalLink, Clock, MapPin, Phone, Mail } from "lucide-react";
+import { ExternalLink, Clock, MapPin, Phone, Mail } from "lucide-react";
+import { StaggerTestimonials } from "@/components/ui/stagger-testimonials";
 
 // ─── Replace with store walkthrough video ─────────────────────────────────────
 // Drop .mp4 in /public/ → "/your-video.mp4"
@@ -291,38 +292,7 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 mb-8">
-              {reviews.map((r) => (
-                <div
-                  key={r.name}
-                  className="bg-[#120018] border border-[rgba(124,58,237,0.15)] p-6 flex flex-col"
-                >
-                  <div className="flex gap-0.5 mb-3">
-                    {Array.from({ length: r.rating }).map((_, i) => (
-                      <Star key={i} size={12} className="fill-[#d4af37] text-[#d4af37]" />
-                    ))}
-                  </div>
-                  <p className="font-[family-name:var(--font-space)] text-xs text-[#9b8fb0] leading-relaxed mb-4 flex-1">
-                    &ldquo;{r.text}&rdquo;
-                  </p>
-                  <div className="flex justify-between items-end mt-auto pt-3 border-t border-[rgba(124,58,237,0.1)]">
-                    <div>
-                      <span className="font-[family-name:var(--font-space)] text-[10px] text-[#f0eaf8] block">
-                        {r.name}
-                      </span>
-                      {"badge" in r && (
-                        <span className="font-[family-name:var(--font-space)] text-[9px] text-[#7c3aed]">
-                          {r.badge}
-                        </span>
-                      )}
-                    </div>
-                    <span className="font-[family-name:var(--font-space)] text-[9px] text-[#9b8fb0]">
-                      {r.date}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <StaggerTestimonials />
 
             {/* Review CTA */}
             <div className="bg-[#120018] border border-[rgba(212,175,55,0.2)] p-8 flex flex-col md:flex-row items-center gap-6">

@@ -1,13 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Search } from "lucide-react";
 import { categories } from "@/lib/products";
+import SearchOverlay from "@/components/ui/search-overlay";
 
 export default function Nav() {
   const pathname = usePathname();
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
+    <>
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[rgba(8,12,5,0.92)] backdrop-blur-md border-b border-[rgba(45,80,22,0.25)]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center h-14 gap-8">
@@ -39,6 +44,15 @@ export default function Nav() {
             </div>
           </div>
 
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            aria-label="Zoeken"
+            className="shrink-0 text-[#a09a8e] hover:text-[#d4af37] transition-colors"
+          >
+            <Search size={16} />
+          </button>
+
           <a
             href="tel:0633897705"
             className="font-[family-name:var(--font-space)] text-[10px] tracking-widest text-[#d4af37] uppercase shrink-0 hidden md:block hover:opacity-70 transition-opacity"
@@ -48,5 +62,8 @@ export default function Nav() {
         </div>
       </div>
     </nav>
+
+    <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
+    </>
   );
 }

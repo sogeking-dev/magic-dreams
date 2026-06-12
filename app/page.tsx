@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { categories } from "@/lib/products";
 import { legalLinks } from "@/lib/store";
@@ -64,6 +65,16 @@ const hours = [
 ];
 
 export default function Home() {
+  // Lighter particle load on phones to keep the hero smooth
+  const [particleDensity, setParticleDensity] = useState(130);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const apply = () => setParticleDensity(mq.matches ? 45 : 130);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
   return (
     <div className="pt-14 bg-[#0a0f0a]">
 
@@ -91,7 +102,7 @@ export default function Home() {
             background="transparent"
             minSize={0.8}
             maxSize={1.8}
-            particleDensity={130}
+            particleDensity={particleDensity}
             speed={1}
             particleColor="#e8cf7a"
             className="h-full w-full"

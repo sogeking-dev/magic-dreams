@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -12,12 +11,6 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const isSeed = product.category === "seedshop";
-  const variants = product.variants ?? [];
-  const hasSelectable = variants.length > 0 && !isSeed;
-  const showFrom = variants.length > 0 && isSeed;
-  const [selected, setSelected] = useState(0);
-  const price = hasSelectable ? variants[selected].price : product.price;
-  const href = `/product/${product.id}`;
 
   return (
     <motion.div
@@ -25,101 +18,55 @@ export default function ProductCard({ product }: ProductCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="group relative bg-[#0c1207] border border-[rgba(45,80,22,0.2)] hover:border-[rgba(212,175,55,0.3)] transition-colors duration-300 overflow-hidden"
+      className="group relative bg-[#0c1207] border border-[rgba(45,80,22,0.2)] hover:border-[rgba(212,175,55,0.3)] transition-colors duration-300 overflow-hidden flex flex-col"
     >
-      {/* Image */}
-      <Link
-        href={href}
-        className={`relative block overflow-hidden ${isSeed ? "aspect-[3/4] bg-[#edeae3]" : "aspect-square"}`}
-      >
-        <Image
-          src={product.image}
-          alt={product.nameFull}
-          fill
-          className={isSeed ? "object-contain p-3" : "object-cover group-hover:scale-105 transition-transform duration-700"}
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-        />
-        {!isSeed && (
-          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
-        )}
+      <Link href={`/${product.category}/${product.slug}`} className="flex flex-col flex-1">
+        {/* Image */}
+        <div className={`relative overflow-hidden ${isSeed ? "aspect-[3/4] bg-[#edeae3]" : "aspect-square bg-[#f4f1e8]"}`}>
+          <Image
+            src={product.image}
+            alt={product.nameFull}
+            fill
+            className={isSeed ? "object-contain p-3" : "object-contain p-3 group-hover:scale-105 transition-transform duration-700"}
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+          />
 
-        {product.isNew && (
-          <span className="absolute top-3 left-3 font-[family-name:var(--font-space)] text-[9px] tracking-[0.3em] uppercase text-[#0a0f0a] bg-[#d4af37] px-2 py-1">
-            Nieuw
-          </span>
-        )}
-        {!product.inStock && (
-          <span className="absolute top-3 right-3 font-[family-name:var(--font-space)] text-[9px] tracking-[0.3em] uppercase text-[#8b8b7e] border border-[#8b8b7e] px-2 py-1">
-            Uitverkocht
-          </span>
-        )}
-      </Link>
+          {product.isNew && (
+            <span className="absolute top-3 left-3 font-[family-name:var(--font-space)] text-[9px] tracking-[0.3em] uppercase text-[#0a0f0a] bg-[#d4af37] px-2 py-1">
+              Nieuw
+            </span>
+          )}
+          {!product.inStock && (
+            <span className="absolute top-3 right-3 font-[family-name:var(--font-space)] text-[9px] tracking-[0.3em] uppercase text-[#8b8b7e] border border-[#8b8b7e] px-2 py-1 bg-[#0a0f0a]/70">
+              Uitverkocht
+            </span>
+          )}
+        </div>
 
-      {/* Info */}
-      <div className="p-4">
-        {product.brand && (
-          <p className="font-[family-name:var(--font-space)] text-[9px] tracking-[0.3em] uppercase text-[#d4af37] mb-1">
-            {product.brand}
-          </p>
-        )}
-        <Link href={href}>
-          <h3 className="font-[family-name:var(--font-cormorant)] text-xl italic text-[#f4f1e8] leading-tight mb-2 hover:text-[#d4af37] transition-colors duration-300">
+        {/* Info */}
+        <div className="p-3 md:p-4 flex flex-col flex-1">
+          {product.brand && (
+            <p className="font-[family-name:var(--font-space)] text-[9px] tracking-[0.3em] uppercase text-[#d4af37] mb-1">
+              {product.brand}
+            </p>
+          )}
+          <h3 className="font-[family-name:var(--font-cormorant)] text-lg md:text-xl italic text-[#f4f1e8] leading-tight mb-2">
             {product.nameFull}
           </h3>
-        </Link>
-        <p className="font-[family-name:var(--font-space)] text-[11px] text-[#8b8b7e] leading-relaxed mb-4">
-          {product.description}
-        </p>
+          <p className="font-[family-name:var(--font-space)] text-[11px] text-[#8b8b7e] leading-relaxed mb-4 line-clamp-2 hidden sm:block">
+            {product.description}
+          </p>
 
-        {product.effects && product.effects.length > 0 && (
-          <div className="flex flex-wrap gap-1 mb-4">
-            {product.effects.map((effect) => (
-              <span
-                key={effect}
-                className="font-[family-name:var(--font-space)] text-[9px] tracking-wider uppercase text-[#8b8b7e] border border-[rgba(139,139,126,0.3)] px-2 py-0.5"
-              >
-                {effect}
-              </span>
-            ))}
+          <div className="flex items-center justify-between mt-auto">
+            <span className="font-[family-name:var(--font-cormorant)] text-xl md:text-2xl font-light text-[#f4f1e8]">
+              €{product.price.toFixed(2).replace(".", ",")}
+            </span>
+            <span className="font-[family-name:var(--font-space)] text-[9px] tracking-[0.25em] uppercase text-[#0a0f0a] bg-[#f4f1e8] px-3 md:px-4 py-2 group-hover:bg-[#d4af37] transition-colors duration-300">
+              Bekijk
+            </span>
           </div>
-        )}
-
-        {hasSelectable && (
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {variants.map((v, i) => (
-              <button
-                key={v.label}
-                type="button"
-                onClick={() => setSelected(i)}
-                className={`font-[family-name:var(--font-space)] text-[9px] tracking-wider uppercase px-2 py-1 border transition-colors duration-200 ${
-                  i === selected
-                    ? "border-[#d4af37] text-[#d4af37]"
-                    : "border-[rgba(139,139,126,0.3)] text-[#8b8b7e] hover:border-[rgba(212,175,55,0.4)]"
-                }`}
-              >
-                {v.label}
-              </button>
-            ))}
-          </div>
-        )}
-
-        <div className="flex items-center justify-between">
-          <span className="font-[family-name:var(--font-cormorant)] text-2xl font-light text-[#f4f1e8]">
-            {showFrom && (
-              <span className="font-[family-name:var(--font-space)] text-[10px] tracking-widest uppercase text-[#8b8b7e] mr-1.5 align-middle">
-                vanaf
-              </span>
-            )}
-            €{price.toFixed(2).replace(".", ",")}
-          </span>
-          <Link
-            href={href}
-            className="font-[family-name:var(--font-space)] text-[9px] tracking-[0.25em] uppercase text-[#0a0f0a] bg-[#f4f1e8] px-4 py-2 hover:bg-[#d4af37] transition-colors duration-300"
-          >
-            Bekijk
-          </Link>
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 }

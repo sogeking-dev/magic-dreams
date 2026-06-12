@@ -1,3 +1,5 @@
+import productsData from "./data/products.json";
+
 export type Category =
   | "smartshop"
   | "headshop"
@@ -7,25 +9,25 @@ export type Category =
   | "shroomshop"
   | "seedshop";
 
-export interface ProductVariant {
-  label: string;
-  price: number;
-}
-
 export interface Product {
   id: string;
+  slug: string;
   name: string;
   nameFull: string;
   category: Category;
   price: number;
   image: string;
+  imageExtra?: string | null;
   effects?: string[];
-  brand?: string;
+  brand?: string | null;
+  inhoud?: string | null;
+  soort?: string | null;
   inStock: boolean;
+  /** Korte tekst voor product cards */
   description: string;
-  descriptionFull?: string;
+  /** Volledige producttekst voor de detailpagina */
+  descriptionFull: string;
   isNew?: boolean;
-  variants?: ProductVariant[];
 }
 
 export const categories: { id: Category; label: string; description: string }[] = [
@@ -52,12 +54,12 @@ export const categories: { id: Category; label: string; description: string }[] 
   {
     id: "herbshop",
     label: "Herbshop",
-    description: "Naturlijke kruiden, salvia en botanische supplementen.",
+    description: "Natuurlijke kruiden, salvia en botanische supplementen.",
   },
   {
     id: "healthshop",
     label: "Healthshop",
-    description: "Voedingssupplementen, afslankmiddelen en manitol.",
+    description: "CBD, voedingssupplementen, afslankmiddelen en manitol.",
   },
   {
     id: "sexshop",
@@ -66,17 +68,44 @@ export const categories: { id: Category; label: string; description: string }[] 
   },
 ];
 
-// Product catalogue imported from the Magic Dreams product feed (magicdreams.nl).
-// Source data lives in ./products.json — regenerate it from the CSV export when
-// the assortment changes. Keep this file for types, categories and helpers.
-import productsData from "./products.json";
+interface RawProduct {
+  id: string;
+  slug: string;
+  name: string;
+  category: string;
+  price: number;
+  image: string;
+  imageExtra: string | null;
+  brand: string | null;
+  inhoud: string | null;
+  soort: string | null;
+  inStock: boolean;
+  shortDescription: string;
+  description: string;
+  vatRate: number;
+}
 
-export const products: Product[] = productsData as Product[];
+export const products: Product[] = (productsData as RawProduct[]).map((p) => ({
+  id: p.id,
+  slug: p.slug,
+  name: p.name,
+  nameFull: p.name,
+  category: p.category as Category,
+  price: p.price,
+  image: p.image,
+  imageExtra: p.imageExtra,
+  brand: p.brand,
+  inhoud: p.inhoud,
+  soort: p.soort,
+  inStock: p.inStock,
+  description: p.shortDescription,
+  descriptionFull: p.description,
+}));
 
 export function getProductsByCategory(category: Category): Product[] {
   return products.filter((p) => p.category === category);
 }
 
-export function getProductById(id: string): Product | undefined {
-  return products.find((p) => p.id === id);
+export function getProductBySlug(slug: string): Product | undefined {
+  return products.find((p) => p.slug === slug);
 }

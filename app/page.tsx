@@ -2,6 +2,7 @@
 
 import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 import { categories } from "@/lib/products";
+import { legalLinks } from "@/lib/store";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ExternalLink, Clock, MapPin, Phone, Mail } from "lucide-react";
@@ -419,13 +420,26 @@ export default function Home() {
           </motion.div>
 
           {/* Footer strip */}
-          <div className="border-t border-[rgba(45,80,22,0.15)] pt-10 flex flex-col md:flex-row justify-between gap-4">
-            <span className="font-[family-name:var(--font-space)] text-[10px] text-[#a09a8e] tracking-widest uppercase">
-              © 2026 Magic Dreams Tilburg
-            </span>
-            <span className="font-[family-name:var(--font-space)] text-[10px] text-[#a09a8e] tracking-widest uppercase">
-              Piusstraat 146 · Tilburg
-            </span>
+          <div className="border-t border-[rgba(45,80,22,0.15)] pt-10 flex flex-col gap-6">
+            <nav className="flex flex-wrap gap-x-6 gap-y-3">
+              {legalLinks.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="font-[family-name:var(--font-space)] text-[10px] tracking-[0.25em] uppercase text-[#a09a8e] hover:text-[#d4af37] transition-colors"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="flex flex-col md:flex-row justify-between gap-4">
+              <span className="font-[family-name:var(--font-space)] text-[10px] text-[#a09a8e] tracking-widest uppercase">
+                © {new Date().getFullYear()} Magic Dreams Tilburg — sinds 1998
+              </span>
+              <span className="font-[family-name:var(--font-space)] text-[10px] text-[#a09a8e] tracking-widest uppercase">
+                Piusstraat 146 · Tilburg
+              </span>
+            </div>
           </div>
 
         </div>

@@ -1,18 +1,12 @@
 "use client";
 
-import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
+import { SparklesCore } from "@/components/ui/sparkles";
 import { categories } from "@/lib/products";
 import { legalLinks } from "@/lib/store";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ExternalLink, Clock, MapPin, Phone, Mail } from "lucide-react";
 import { StaggerTestimonials } from "@/components/ui/stagger-testimonials";
-
-// ─── Replace with store walkthrough video ─────────────────────────────────────
-// Drop .mp4 in /public/ → "/your-video.mp4"
-// Or YouTube → "https://www.youtube.com/watch?v=YOUR_ID"
-const STORE_VIDEO = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-const BG = "/store.png";
 
 const GOOGLE_REVIEW_URL =
   "https://www.google.com/search?q=Magic+Dreams+Tilburg+reviews";
@@ -71,7 +65,7 @@ const hours = [
 
 export default function Home() {
   return (
-    <div className="pt-14">
+    <div className="pt-14 bg-[#0a0f0a]">
 
       {/* ── Under Construction Banner ──────────────────────────── */}
       <div className="bg-[rgba(45,80,22,0.15)] border-b border-[rgba(45,80,22,0.3)] px-6 py-3 text-center">
@@ -88,17 +82,53 @@ export default function Home() {
         </p>
       </div>
 
-      {/* ── Scroll Expansion Hero ──────────────────────────────── */}
-      <ScrollExpandMedia
-        mediaType="video"
-        mediaSrc={STORE_VIDEO}
-        bgImageSrc={BG}
-        title="MAGIC DREAMS"
-        date="Tilburg · Sinds 1998"
-        scrollToExpand="Scroll om binnen te komen"
-        textBlend
-      >
-        <div className="max-w-5xl mx-auto text-[#f4efe6] space-y-28 pb-32">
+      {/* ── Sparkles Hero ──────────────────────────────────────── */}
+      <section className="relative flex h-[88vh] min-h-[560px] w-full flex-col items-center justify-center overflow-hidden bg-[#0a0f0a]">
+        {/* Particle field */}
+        <div className="absolute inset-0">
+          <SparklesCore
+            id="hero-sparkles"
+            background="transparent"
+            minSize={0.8}
+            maxSize={1.8}
+            particleDensity={130}
+            speed={1}
+            particleColor="#e8cf7a"
+            className="h-full w-full"
+          />
+        </div>
+
+        {/* Radial vignette so particles fade at the edges */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(10,15,10,0.55)_88%)]" />
+
+        {/* Title */}
+        <div className="relative z-20 px-6 text-center">
+          <p className="font-[family-name:var(--font-space)] text-[10px] md:text-xs tracking-[0.45em] uppercase text-[#d4af37] mb-6">
+            Sinds 1998 · Tilburg
+          </p>
+          <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(3rem,14vw,11rem)] font-light italic leading-[0.9] text-[#f4efe6]">
+            Magic Dreams
+          </h1>
+
+          {/* Signature gradient beams */}
+          <div className="relative mx-auto mt-3 h-8 w-[min(40rem,90vw)]">
+            <div className="absolute inset-x-[12%] top-0 h-[2px] w-3/4 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent blur-sm" />
+            <div className="absolute inset-x-[12%] top-0 h-px w-3/4 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+            <div className="absolute inset-x-[30%] top-0 h-[4px] w-1/2 bg-gradient-to-r from-transparent via-[#4a7a28] to-transparent blur-sm" />
+            <div className="absolute inset-x-[30%] top-0 h-px w-1/2 bg-gradient-to-r from-transparent via-[#4a7a28] to-transparent" />
+          </div>
+
+          <p className="font-[family-name:var(--font-cormorant)] text-lg md:text-2xl italic text-[#a09a8e] mt-6">
+            Smartshop · Headshop · Seedshop — Piusstraat 146
+          </p>
+        </div>
+
+        {/* Fade into the page content below */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#0a0f0a]" />
+      </section>
+
+      {/* ── Page content ───────────────────────────────────────── */}
+      <div className="max-w-5xl mx-auto px-6 pt-16 text-[#f4efe6] space-y-28 pb-32">
 
           {/* ── Promo Banner ────────────────────────────────────── */}
           <motion.div
@@ -442,8 +472,7 @@ export default function Home() {
             </div>
           </div>
 
-        </div>
-      </ScrollExpandMedia>
+      </div>
     </div>
   );
 }

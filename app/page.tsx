@@ -113,11 +113,11 @@ export default function Home() {
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(10,15,10,0.55)_88%)]" />
 
         {/* Title */}
-        <div className="relative z-20 px-6 text-center">
+        <div className="relative z-20 w-full max-w-2xl mx-auto px-6 text-center">
           <p className="font-[family-name:var(--font-space)] text-[10px] md:text-xs tracking-[0.45em] uppercase text-[#d4af37] mb-6">
             Sinds 1998 · Tilburg
           </p>
-          <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(3rem,14vw,11rem)] font-light italic leading-[0.9] text-[#f4efe6]">
+          <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(2.5rem,11vw,11rem)] font-light italic leading-[0.95] text-[#f4efe6] break-words">
             Magic Dreams
           </h1>
 
@@ -129,7 +129,7 @@ export default function Home() {
             <div className="absolute inset-x-[30%] top-0 h-px w-1/2 bg-gradient-to-r from-transparent via-[#4a7a28] to-transparent" />
           </div>
 
-          <p className="font-[family-name:var(--font-cormorant)] text-lg md:text-2xl italic text-[#a09a8e] mt-6">
+          <p className="font-[family-name:var(--font-cormorant)] text-base md:text-2xl italic text-[#a09a8e] mt-6 text-balance">
             Smartshop · Headshop · Seedshop — Piusstraat 146
           </p>
         </div>
